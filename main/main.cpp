@@ -4,16 +4,20 @@
 #include <string>
 #include <map>
 #include <chrono>
-#include "Cell.h"
-#include "Net.h"
-#include "Circuit.h"
-#include "vector"
+#include <gap/Cell.h>
+#include <gap/Net.h>
+#include <gap/Circuit.h>
+#include <vector>
 #include <random>
 //bucklist struct
 
 
 int main(int argc, char** argv) {
     auto start = std::chrono::high_resolution_clock::now();
+    
+    // TODO: prefer object over pointer
+    // Circuit circuit;
+
     Circuit* circult = new Circuit();
     circult->create_graph(argv[1]);
     std::cout << "finish graph " << std::endl;

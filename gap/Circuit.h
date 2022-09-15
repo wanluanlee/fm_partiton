@@ -2,8 +2,8 @@
 // Created by Wan Luan Lee on 9/6/22.
 //
 
-#ifndef FM_CIRCUIT_H
-#define FM_CIRCUIT_H
+#pragma once
+
 #include <string>
 #include "Cell.h"
 #include "Net.h"
@@ -14,26 +14,25 @@
 #include <vector>
 #include <chrono>
 
-typedef struct gain_bucket {
-    int id;
-    Cell* cell;
-    struct gain_bucket *next, *previous;
-}gain_bucket;
-
 class Circuit {
 
 public:
+
+    // TODO: prefer constant function qualifier over non-constant
+
     Circuit();
     ~Circuit();
     void create_graph(std::string file_name);
     void init_partition();
-    size_t compute_cutsize();
+    size_t compute_cutsize() const;
     //void calculate_cutsize();
     void fm_pass();
     size_t min_cutsize(int num_it);
     void retrive_best();
-    size_t get_partition_a_size();
-    size_t get_partition_b_size();
+    size_t get_partition_a_size() const;
+    size_t get_partition_b_size() const;
+
+    // TODO: double check
     std::list<Cell*> get_partition_a_list();
     std::list<Cell*> get_partition_b_list();
 
@@ -42,6 +41,10 @@ private:
     int _max_gain = 0;
     size_t _num_cells = 0;
     size_t _num_nets = 0;
+
+
+    // TODO: prefer object over pointer
+    // TODO: replacing std::map with unordered_map
     std::map<std::string, Cell*> _all_cells;
     std::map<std::string, Net*> _all_nets;
     size_t _cells_in_a = 0;
@@ -65,5 +68,3 @@ private:
     size_t _find_max_index(std::vector<int> int_list);
 };
 
-
-#endif //FM_CIRCUIT_H

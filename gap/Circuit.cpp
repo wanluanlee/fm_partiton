@@ -350,7 +350,7 @@ void Circuit::_move_cell(Cell* cell_to_be_move) {
     }
 }
 
-size_t Circuit::compute_cutsize() {
+size_t Circuit::compute_cutsize() const {
 
     int num_cutnet = 0;
 
@@ -369,15 +369,15 @@ size_t Circuit::compute_cutsize() {
     return num_cutnet;
 }
 
-size_t Circuit::get_partition_a_size() {
+size_t Circuit::get_partition_a_size() const {
     return _cells_in_a;
 }
 
-size_t Circuit::get_partition_b_size() {
+size_t Circuit::get_partition_b_size() const {
     return _cells_in_b;
 }
 
-std::list<Cell*> Circuit::get_partition_a_list() {
+std::list<Cell*> Circuit::get_partition_a_list() const {
     std::list<Cell*> cells_in_a;
     int in_a = 0;
     for(auto&& i : _all_cells) {
@@ -389,7 +389,7 @@ std::list<Cell*> Circuit::get_partition_a_list() {
     return cells_in_a;
 }
 
-std::list<Cell*> Circuit::get_partition_b_list() {
+std::list<Cell*> Circuit::get_partition_b_list() const {
     std::list<Cell*> cells_in_b;
     for(auto&& i : _all_cells) {
         if(i.second -> get_position() == 1) {

@@ -10,7 +10,8 @@
 class Cell;
 class Net {
 public:
-    Net(std::string name);
+    // TODO: prefer const reference over copy
+    Net(const std::string& name);
     void insert_cell(Cell* cell_name);
     void print();
     std::list<Cell*>& get_cells();
